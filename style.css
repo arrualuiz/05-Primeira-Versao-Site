@@ -1,0 +1,52 @@
+body {
+  background: #0d1117;
+  color: #e6edf3;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#dashboard {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "weather news"
+    "calendar calendar";
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+header { grid-area: header; text-align: center; }
+#weather { grid-area: weather; }
+#news { grid-area: news; }
+footer { grid-area: calendar; text-align: center; }
+
+section, footer {
+  background: #161b22;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.05);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.day {
+  background: #21262d;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.today {
+  background: #238636;
+  font-weight: bold;
+}

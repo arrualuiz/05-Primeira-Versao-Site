@@ -1,0 +1,371 @@
+/* VARIÁVEIS E CONFIGURAÇÕES GLOBAIS */
+
+:root {
+  --navy: #041226;
+  --black: #000000;
+  --white: #eef6ff;
+  --card: #0b1724;
+  --muted: #9fb6d0;
+  --accent: #2b6fb3;
+}
+
+* { box-sizing: border-box }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,var(--navy),var(--black));
+  color: var(--white);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* LAYOUT PRINCIPAL */
+
+#dashboard {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+}
+
+/* CABEÇALHO - RELÓGIO E DATA */
+
+header {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  background: transparent;
+}
+
+#clock {
+  font-size: 80px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+#date {
+  margin: 0;
+  color: var(--muted);
+  font-size: 30px;
+  text-transform: lowercase;
+}
+
+/* CARDS */
+
+.cards {
+  display: block;
+  margin: 0;
+  width: 100%;
+}
+
+.card {
+  background: #0d1526;
+  border: 1px solid #1e2b44;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 320px;
+  min-height: 250px;
+  color: #e0e6f0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+/* Cards específicos e seus posicionamentos */
+#links-card {
+  position: fixed;
+  right: 18px;
+  bottom: 100px;
+  margin: 0;
+  width: 420px;
+  z-index: 25;
+}
+
+#links-card-2 {
+  position: fixed;
+  /* coloca à esquerda do primeiro com 50px de gap */
+  right: 488px;
+  bottom: 100px;
+  width: 420px;
+  z-index: 55;
+}
+
+/* mantém aparência limpa dos ULs */
+#links-card ul,
+#links-card-2 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%; /* ocupa todo o espaço do card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* distribui igualmente */
+  align-items: center;
+  text-align: center;
+}
+
+#links-card li,
+#links-card-2 li {
+  text-align: center;      /* centraliza o texto dentro do li */
+  margin: 3px 0;           /* espaçamento vertical entre os links */
+}
+
+#links-card a,
+#links-card-2 a {
+  display: inline-block;   /* permite centralizar direitinho */
+  text-align: center;
+}
+
+
+#weather-card {
+  position: fixed;
+  right: 758px;           /* 358px + 320px + 50px */
+  top: 24px;
+  transform: none;
+}
+
+#news-card-coritiba, #news-card-santos {
+  position: fixed;
+  top: 24px;              /* mudou de 80px para 24px - alinhado com o padding do body */
+  min-height: 500px;      /* aumentei mais a altura para aproveitar o espaço extra */
+  height: auto;
+  overflow-y: auto;
+}
+
+#news-card-coritiba {
+  right: 388px;           /* 338px + 50px - aumentada distância do Santos */
+}
+
+#news-card-santos {
+  right: 18px;           /* mantém posição original */
+}
+
+/* Ajuste específico para lista de notícias dentro dos cards */
+#news-card-coritiba ul,
+#news-card-santos ul {
+  padding: 0 15px;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+}
+
+#news-card-coritiba li,
+#news-card-santos li {
+  margin-bottom: 15px;
+  text-align: left;       /* alinha textos à esquerda */
+  line-height: 1.4;       /* melhora legibilidade */
+}
+
+/* Estilização dos elementos dentro dos cards */
+.card h2 {
+  color: #9dbff9;
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+}
+
+.card a {
+  color: #6daaff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.card a:hover {
+  color: #9dbff9;
+  text-decoration: underline;
+}
+
+/* CALENDÁRIO E CONTADORES */
+
+#calendar {
+  position: fixed;
+  left: 25px;
+  bottom: 110px;
+  margin: 0;
+  width: 25%;
+  max-width: 600px;
+  background: #0d1526;
+  border: 1px solid #1e2b44;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  color: #e0e6f0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  font-size: 1rem;
+  text-align: center;
+  z-index: 55;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Dias da semana e suas cores */
+.day, .day-name {
+  background: #1c2230;
+  border-radius: 4px;
+  padding: 12px;
+  text-align: center;
+  aspect-ratio: 1;      /* força quadrado perfeito */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  min-width: 30px;
+  min-height: 30px;
+  transition: background 0.3s;
+}
+
+.day:nth-child(7n+1), .day-name:nth-child(7n+1) { background: #1a263a; }
+.day:nth-child(7n+2), .day-name:nth-child(7n+2) { background: #192b45; }
+.day:nth-child(7n+3), .day-name:nth-child(7n+3) { background: #1a3151; }
+.day:nth-child(7n+4), .day-name:nth-child(7n+4) { background: #17385c; }
+.day:nth-child(7n+5), .day-name:nth-child(7n+5) { background: #163e66; }
+.day:nth-child(7n+6), .day-name:nth-child(7n+6) { background: #154471; }
+.day:nth-child(7n+7), .day-name:nth-child(7n+7) { background: #124b7e; }
+
+.today {
+  background: #3b82f6 !important;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(59,130,246,0.4);
+}
+
+/* Contadores abaixo do calendário */
+#semanaAtual, #contador, #contadorBia, #contadorLuiz {
+  position: fixed;
+  left: 0px;
+  width: 30%;
+  max-width: 600px;
+  text-align: center;
+  font-size: 1rem;
+  z-index: 55;
+  margin: 0;
+}
+
+#semanaAtual { bottom: 80px; }
+
+#contadorBia { bottom: 60px; }
+
+#contador { bottom: 40px; }
+
+#contadorLuiz { bottom: 20px; }
+
+/*  RODAPÉ E ASSINATURA */
+.signature {
+  position: fixed;
+  left: 50%;
+  bottom: 0.9px;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #6daaff;
+  margin: 0;
+  padding: 0;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  z-index: 60;
+  background: transparent;
+  pointer-events: none;
+}
+
+.signature-name {
+  font-weight: 600;
+  background: linear-gradient(90deg, #9dbff9, #ffffff, #9dbff9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* RESPONSIVIDADE */
+
+@media (min-width: 1600px) {
+  .card {
+    flex: 0 0 340px;
+    width: 340px;
+    height: 240px;
+    padding: 1.5rem 2rem;
+  }
+  .cards {
+    gap: 2rem;
+  }
+  #calendar {
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .card {
+    flex: 0 0 300px;
+    width: 300px;
+    height: 220px;
+  }
+  .cards {
+    gap: 1.5rem;
+  }
+  #calendar {
+    max-width: 700px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1199px) {
+  .card {
+    flex: 0 0 280px;
+    width: 280px;
+    height: 200px;
+  }
+  .cards {
+    gap: 1rem;
+  }
+}
+
+/* mobile responsiveness */
+@media (max-width: 799px) {
+  .card {
+    flex: 0 0 260px;
+    width: 260px;
+    height: 180px;
+    padding: 0.8rem 1.2rem;
+  }
+  .cards {
+    gap: 0.8rem;
+  }
+  main {
+    grid-template-columns: 1fr;
+  }
+  #clock {
+    font-size: 36px;
+  }
+  #calendar {
+    width: 90%;
+  }
+}
+@media (max-width: 900px) {
+  header {
+    position: static;
+    align-items: center;
+    text-align: center;
+    padding-top: 10px;
+  }
+}
+
